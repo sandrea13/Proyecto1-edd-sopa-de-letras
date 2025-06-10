@@ -6,7 +6,7 @@ package proyecto1.sopa;
 
 /**
  *
- * @author
+ * @author Adolfo Castillo, Andrea Sanchez, Luciano Rojas 
  */
 public class Proyecto1Sopa {
 

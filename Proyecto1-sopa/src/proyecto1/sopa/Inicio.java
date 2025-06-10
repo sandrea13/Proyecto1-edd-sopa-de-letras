@@ -4,9 +4,17 @@
  */
 package proyecto1.sopa;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
- * @author adcd_
+ * @author Adolfo Castillo, Andrea Sanchez, Luciano Rojas 
  */
 public class Inicio extends javax.swing.JFrame {
 
@@ -49,6 +57,11 @@ public class Inicio extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setText("Iniciar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -87,6 +100,31 @@ public class Inicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Se crea el Objeto JFileChooser
+        JFileChooser fc = new JFileChooser();
+
+        // Se crea el filtro para que solo se acepte TXT
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.TXT", "txt");
+
+        // Se le indica el filtro
+        fc.setFileFilter(filtro);
+
+        // Se abre la ventana, y se guarda la op seleccionada por el usuario
+        int seleccion = fc.showOpenDialog(this);
+        
+        // Si el usuario presiona aceptar
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            //
+        } else {
+            // Muestra un mensaje de error si no se ha escogido un archivo válido.
+            JOptionPane.showMessageDialog(null, "No se escogió un archivo válido");
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

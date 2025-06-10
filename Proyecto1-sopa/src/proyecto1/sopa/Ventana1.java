@@ -6,7 +6,7 @@ package proyecto1.sopa;
 
 /**
  *
- * @author adcd_
+ * @author Adolfo Castillo, Andrea Sanchez, Luciano Rojas 
  */
 public class Ventana1 extends javax.swing.JFrame {
 
