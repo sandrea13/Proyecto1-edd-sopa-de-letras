@@ -24,10 +24,11 @@ public class Grafo {
     }
     
     public void crearArista(int i, int j) {
-        System.out.println("cREAR ARISTA");
+        System.out.println("Crear arista");
     }
+    
     public void crearGrafo() {
-        System.out.println("crear grafo");
+        System.out.println("creargrafo");
     }
     
     
