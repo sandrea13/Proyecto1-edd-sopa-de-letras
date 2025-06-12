@@ -24,7 +24,9 @@ public class Grafo {
     }
     
     public void crearArista(int i, int j) {
-        System.out.println("Crear arista");
+        if (0 <= i && i < 16 && 0 <= j && j < 16) {
+            this.vertices[i].getListainterna().Agg(this.vertices[j], this.vertices[i]);
+        }
     }
     
     public void crearGrafo() {
