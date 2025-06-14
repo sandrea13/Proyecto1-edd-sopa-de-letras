@@ -17,7 +17,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Adolfo Castillo, Andrea Sanchez, Luciano Rojas 
  */
 public class Inicio extends javax.swing.JFrame {
-
+    
+    
+    public String[] palabras; //Diccionario de palabras
+    public Grafo grafo;
+    
+    
     /**
      * Creates new form Inicio
      */
@@ -116,7 +121,33 @@ public class Inicio extends javax.swing.JFrame {
         
         // Si el usuario presiona aceptar
         if (seleccion == JFileChooser.APPROVE_OPTION) {
-            //
+            // Selecciono el fichero
+            File fichero = fc.getSelectedFile();
+            String datos = "";
+
+            try (FileReader fr = new FileReader(fichero); BufferedReader br = new BufferedReader(fr)) {
+                StringBuilder cadena = new StringBuilder();
+                String linea;
+                int modo = 0;
+                while ((linea = br.readLine()) != null) {
+                    if (linea.equals("dic") && linea.equals("/dic")) {
+
+                    } else if (linea.equals("tab") && linea.equals("/tab")) {
+                        modo = 1;
+                    } else if (modo == 0) {
+                        datos += linea + ",";
+                    } else {
+                        linea = linea.replace(",", "");
+                        this.grafo = new Grafo(linea.length(), linea);
+                    }
+                    //System.out.println(linea);
+                    
+                }
+                this.palabras = datos.split(",");
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         } else {
             // Muestra un mensaje de error si no se ha escogido un archivo válido.
             JOptionPane.showMessageDialog(null, "No se escogió un archivo válido");
