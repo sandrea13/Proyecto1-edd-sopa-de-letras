@@ -30,7 +30,50 @@ public class Grafo {
     }
     
     public void crearGrafo() {
-        System.out.println("creargrafo");
+        for (int x = 0; x < 16; x++) {
+            if (x == 0 || x == 4 || x == 8 || x == 12) {
+                this.crearArista(x, x + 1);
+                if (x - 4 >= 0) {
+                    this.crearArista(x, x - 3);
+                    this.crearArista(x, x - 4);
+                }
+                if (x + 4 < 16) {
+                    this.crearArista(x, x + 4);
+                    this.crearArista(x, x + 5);
+
+                }
+            } else if (x == 3 || x == 7 || x == 11 || x == 15) {
+                this.crearArista(x, x - 1);
+                if (x - 4 >= 0) {
+                    this.crearArista(x, x - 5);
+                    this.crearArista(x, x - 4);
+                }
+                if (x + 4 <= 16) {
+                    this.crearArista(x, x + 3);
+                    this.crearArista(x, x + 4);
+                }
+            } else {
+                this.crearArista(x, x + 1);
+                this.crearArista(x, x - 1);
+                if (x - 4 >= 0) {
+                    this.crearArista(x, x - 5);
+                    this.crearArista(x, x - 4);
+                    this.crearArista(x, x - 3);
+                }
+                if (x + 4 <= 16) {
+                    this.crearArista(x, x + 3);
+                    this.crearArista(x, x + 4);
+                    this.crearArista(x, x + 5);
+                }
+            }
+        }
+    }
+    
+    
+    public void mostrar() {
+        for (int i = 0; i < 16; i++) {
+            this.vertices[i].getListainterna().Imprimir();
+        }
     }
     
     
