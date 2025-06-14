@@ -130,9 +130,9 @@ public class Inicio extends javax.swing.JFrame {
                 String linea;
                 int modo = 0;
                 while ((linea = br.readLine()) != null) {
-                    if (linea.equals("dic") && linea.equals("/dic")) {
+                    if (linea.equals("dic") || linea.equals("/dic")) {
 
-                    } else if (linea.equals("tab") && linea.equals("/tab")) {
+                    } else if (linea.equals("tab") || linea.equals("/tab")) {
                         modo = 1;
                     } else if (modo == 0) {
                         datos += linea + ",";
@@ -141,6 +141,7 @@ public class Inicio extends javax.swing.JFrame {
                         this.grafo = new Grafo(linea.length(), linea);
                     }
                     //System.out.println(linea);
+                    cadena.append(linea).append("\n");
                     
                 }
                 this.palabras = datos.split(",");
