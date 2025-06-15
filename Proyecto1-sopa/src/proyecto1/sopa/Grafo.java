@@ -9,10 +9,15 @@ package proyecto1.sopa;
  * @author Adolfo Castillo, Andrea Sanchez, Luciano Rojas 
  */
 public class Grafo {
+    
+    /**
+     * Declaracion de variable
+     */
     public int max; //Maximo de nodos
     public int nodos_actuales;
     public Nodo[] vertices;
 
+    
     public Grafo(int max, String letras) {
         this.max = max;
         this.nodos_actuales = 0;

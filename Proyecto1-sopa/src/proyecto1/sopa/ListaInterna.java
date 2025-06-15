@@ -10,9 +10,15 @@ package proyecto1.sopa;
  */
 public class ListaInterna {
     
+    /**
+     * Declaracion de variable
+     */
     private Arco Cabeza;
     private Arco Ultimo;
     
+    /**
+     * Crea una nueva {@code ListaInterna} vacía.
+     */
     public ListaInterna() {
         this.Cabeza = null;
         this.Ultimo = null;
@@ -36,11 +42,22 @@ public class ListaInterna {
     }
     
     
+    /**
+     * Comprueba si la lista está vacía o no.
+     *
+     * @return {@code true} si la lista está vacía; {@code false} en caso
+     * contrario
+     */
     public boolean isEmpty() {
         return Cabeza == null;
     }
     
-    
+    /**
+     * Agrega un nuevo arco a la lista.
+     *
+     * @param n1 el primer nodo del arco
+     * @param n2 el segundo nodo del arco
+     */
     public void Agg(Nodo n1, Nodo n2) {
         Arco nuevoArco = new Arco(n1, n2);
         if (this.isEmpty()) {
@@ -53,6 +70,13 @@ public class ListaInterna {
     }
     
     
+    /**
+     * Busca un nodo en la lista.
+     *
+     * @param uno el nodo a buscar
+     * @return {@code true} si el nodo se encuentra en la lista; {@code false}
+     * en caso contrario
+     */
     public boolean Buscar(Nodo uno) {
         Arco aux = Cabeza;
         while (aux != null && (aux.nLetra != uno && aux.nLetra2 != uno)) {
@@ -61,7 +85,9 @@ public class ListaInterna {
         return aux != null;
     }
     
-    
+    /**
+     * Imprime la lista de arcos.
+     */
     public void Imprimir() {
         Arco aux = Cabeza;
         if (aux != null) {

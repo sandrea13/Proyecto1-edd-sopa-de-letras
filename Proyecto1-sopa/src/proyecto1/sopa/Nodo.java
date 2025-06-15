@@ -10,10 +10,18 @@ package proyecto1.sopa;
  */
 public class Nodo {
     
+    /**
+     * Declaracion de variable
+     */
     private String Letras;
     private Nodo apuntador;
     private ListaInterna listainterna;
     
+    /**
+     * Crea un nuevo {@code Nodo} con la cadena de letras especificada.
+     *
+     * @param Letras la cadena de letras del nodo
+     */
     public Nodo(String Letras) {
         this.Letras = Letras;
         this.apuntador = null;

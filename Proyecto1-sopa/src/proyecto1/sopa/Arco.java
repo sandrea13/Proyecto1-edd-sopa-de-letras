@@ -9,10 +9,20 @@ package proyecto1.sopa;
  * @author Adolfo Castillo, Andrea Sanchez, Luciano Rojas 
  */
 public class Arco {
-    public Nodo nLetra;
-    public Nodo nLetra2;
+    
+    /**
+     * Declaracion de variable
+     */
+    public Nodo nLetra; //El nodo de origen del arco.
+    public Nodo nLetra2; //El nodo de destino del arco.
     public Arco siguiente;
     
+    /**
+     * Crea un nuevo {@code Arco} con los nodos especificados.
+     *
+     * @param Letra el nodo de origen
+     * @param Puntero el nodo de destino
+     */
     public Arco(Nodo Letra, Nodo Puntero) {
         this.nLetra = Letra;
         this.nLetra2 = Puntero;

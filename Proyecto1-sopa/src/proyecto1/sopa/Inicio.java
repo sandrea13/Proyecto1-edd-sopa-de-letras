@@ -105,7 +105,13 @@ public class Inicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Acción realizada al presionar el botón "Iniciar". Abre un diálogo de
+     * selección de archivo, carga el archivo seleccionado.
+     *
+     * @param evt el evento de acción
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Se crea el Objeto JFileChooser
         JFileChooser fc = new JFileChooser();
@@ -143,8 +149,14 @@ public class Inicio extends javax.swing.JFrame {
                     //System.out.println(linea);
                     cadena.append(linea).append("\n");
                     
+                    
+                    
                 }
                 this.palabras = datos.split(",");
+                
+                Ventana1 nv = new Ventana1();
+                nv.setVisible(true);
+                this.setVisible(false);
 
             } catch (IOException e1) {
                 e1.printStackTrace();
