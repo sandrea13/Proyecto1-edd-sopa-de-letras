@@ -82,4 +82,10 @@ public class Grafo {
     }
     
     
+    public boolean amplitud(String palabra) {
+        
+        return false;
+    }
+    
+    
 }
