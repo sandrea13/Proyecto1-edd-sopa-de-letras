@@ -125,16 +125,24 @@ public class Ventana1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //Profundidad
+        
+        this.palabras.setText("");
         long startTime = System.currentTimeMillis();
         
         for (int i = 0; i < v1.palabras.length; i++) {
             String palabra = v1.palabras[i];
+            boolean respuesta = v1.grafo.profundidad(palabra);
+            if (respuesta) {
+                this.palabras.setText(palabras.getText() + "\n" + palabra);
+            }
         }
         
         long endTime = System.currentTimeMillis();
         long tiempoDeEjecucion = endTime - startTime;
-
-        JOptionPane.showMessageDialog(null, "Tiempo de ejecución: " + tiempoDeEjecucion + " milisegundos");
+        
+        this.palabras.setText(palabras.getText() + "\n \n" + "Tiempo de ejecución: " + tiempoDeEjecucion + " milisegundos");
+        //JOptionPane.showMessageDialog(null, "Tiempo de ejecución: " + tiempoDeEjecucion + " milisegundos");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

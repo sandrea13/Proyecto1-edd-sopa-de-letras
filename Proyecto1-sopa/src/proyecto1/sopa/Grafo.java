@@ -119,6 +119,21 @@ public class Grafo {
         return false;
     }
     
-    
+    public boolean profundidad(String palabra) {
+        boolean visitados[] = new boolean[this.max];
+        boolean b = false;
+        for (int i = 0; i < this.max; i++) { 
+            visitados[i] = false;
+        }
+        for (int i = 0; i < this.max; i++) {
+            if (!visitados[i] && this.vertices[i].getLetras().equals(String.valueOf(palabra.charAt(0)))) {    //vértice visitado 
+                visitados[i] = true;
+
+                System.out.println("ENTRA");
+                
+            }
+        }
+        return b;
+    }
     
 }
