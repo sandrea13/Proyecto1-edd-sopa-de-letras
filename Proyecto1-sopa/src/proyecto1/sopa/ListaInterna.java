@@ -25,18 +25,38 @@ public class ListaInterna {
     }
 
     
+    /**
+     * Obtiene el arco cabeza de la lista.
+     *
+     * @return el arco cabeza de la lista
+     */
     public Arco getCabeza() {
         return Cabeza;
     }
-
+    
+    /**
+     * Establece el arco cabeza de la lista.
+     *
+     * @param Cabeza el arco cabeza de la lista
+     */
     public void setCabeza(Arco Cabeza) {
         this.Cabeza = Cabeza;
     }
 
+    /**
+     * Obtiene el último arco de la lista.
+     *
+     * @return el último arco de la lista
+     */
     public Arco getUltimo() {
         return Ultimo;
     }
-
+    
+    /**
+     * Establece el último arco de la lista.
+     *
+     * @param Ultimo el último arco de la lista
+     */
     public void setUltimo(Arco Ultimo) {
         this.Ultimo = Ultimo;
     }
