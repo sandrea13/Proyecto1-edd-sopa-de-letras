@@ -43,7 +43,7 @@ public class Ventana1 extends javax.swing.JFrame {
         buscador = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        palabras = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
 
@@ -100,9 +100,9 @@ public class Ventana1 extends javax.swing.JFrame {
         jButton3.setText("Cargar Informacion");
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, -1, -1));
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        palabras.setColumns(20);
+        palabras.setRows(5);
+        jScrollPane2.setViewportView(palabras);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 270, 200));
 
@@ -138,16 +138,23 @@ public class Ventana1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //Amplitud
+        this.palabras.setText("");
         long startTime = System.currentTimeMillis();
         
         for (int i = 0; i < v1.palabras.length; i++) {
             String palabra = v1.palabras[i];
+            boolean respuesta = v1.grafo.amplitud(palabra);
+            if (respuesta) {
+                this.palabras.setText(palabras.getText() + "\n" + palabra);
+            }
         }
         
         long endTime = System.currentTimeMillis();
         long tiempoDeEjecucion = endTime - startTime;
-
-        JOptionPane.showMessageDialog(null, "Tiempo de ejecución: " + tiempoDeEjecucion + " milisegundos");
+        
+        this.palabras.setText(palabras.getText() + "\n \n" + "Tiempo de ejecución: " + tiempoDeEjecucion + " milisegundos");
+        //JOptionPane.showMessageDialog(null, "Tiempo de ejecución: " + tiempoDeEjecucion + " milisegundos");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -220,7 +227,7 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea palabras;
     private javax.swing.JTextArea resultadoBusqueda;
     // End of variables declaration//GEN-END:variables
 }
