@@ -4,17 +4,22 @@
  */
 package proyecto1.sopa;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Adolfo Castillo, Andrea Sanchez, Luciano Rojas 
  */
 public class Ventana1 extends javax.swing.JFrame {
 
+    public static Inicio v1;
+    
     /**
      * Creates new form Ventana1
      */
-    public Ventana1() {
+    public Ventana1(Inicio v1) {
         initComponents();
+        this.v1 = v1;
     }
 
     /**
@@ -35,7 +40,7 @@ public class Ventana1 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        buscador = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
@@ -90,7 +95,7 @@ public class Ventana1 extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Volver a cargar informacion: ");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 170, -1));
+        jPanel1.add(buscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 170, -1));
 
         jButton3.setText("Cargar Informacion");
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, -1, -1));
@@ -107,6 +112,11 @@ public class Ventana1 extends javax.swing.JFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, -1, -1));
 
         jButton4.setText("Buscar palabra");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 520));
@@ -121,6 +131,23 @@ public class Ventana1 extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        
+        String palabra = this.buscador.getText().toUpperCase();
+        if (palabra.length() > 2) {
+            boolean encontro = v1.grafo.amplitud(palabra);
+            if (encontro) {
+                JOptionPane.showMessageDialog(rootPane, "La palabra ha sido encontrada");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "La palabra no ha sido encontrada");
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "La palabra debe tener al menos tres letras");
+
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,12 +179,13 @@ public class Ventana1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ventana1().setVisible(true);
+                new Ventana1(v1).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField buscador;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -172,6 +200,5 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -83,6 +83,38 @@ public class Grafo {
     
     
     public boolean amplitud(String palabra) {
+        Cola cola = new Cola();
+        boolean visitados[] = new boolean[this.max];
+        Nodo verticeActual;
+        
+        for (int i = 0; i < this.max; i++) {
+            visitados[i] = false;
+        }
+        
+        for (int i = 0; i < this.max; i++) {
+            if (!visitados[i] && this.vertices[i].getLetras().equals(String.valueOf(palabra.charAt(0)))) {
+                cola.encolar(this.vertices[i]);
+                visitados[i] = true;
+                int pos = 1;
+                while (!cola.isEmpty()) {
+                    String p = palabra.substring(pos);
+                    verticeActual = cola.desencolar();
+                    if (p.length() == 0) {
+                        return true;
+                    }
+                    System.out.println(verticeActual.getLetras());
+
+                    for (int j = 0; j < this.max; j++) {
+                        if (verticeActual.getListainterna().Buscar(this.vertices[j]) && (!visitados[j]) && this.vertices[j].getLetras().equals(String.valueOf(palabra.charAt(pos)))) {
+                            cola.encolar(this.vertices[j]);
+                            System.out.println(this.vertices[j].getLetras());
+                            visitados[j] = true;
+                        }
+                    }
+                    pos++;
+                }
+            }
+        }
         
         return false;
     }

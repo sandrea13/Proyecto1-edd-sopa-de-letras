@@ -154,7 +154,7 @@ public class Inicio extends javax.swing.JFrame {
                 }
                 this.palabras = datos.split(",");
                 
-                Ventana1 nv = new Ventana1();
+                Ventana1 nv = new Ventana1(this);
                 nv.setVisible(true);
                 this.setVisible(false);
 
