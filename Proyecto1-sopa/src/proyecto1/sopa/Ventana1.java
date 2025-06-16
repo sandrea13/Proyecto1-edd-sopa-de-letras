@@ -25,9 +25,21 @@ public class Ventana1 extends javax.swing.JFrame {
         // Obtener el modelo actual de la tabla
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-        // Agregar filas (cada fila es un array de objetos)
-        model.addRow(new Object[]{"Dato 1", "Dato 2", "Dato 3", "Dato 4"});
-        model.addRow(new Object[]{"Otro dato", "Más datos", "Último dato", "Último dato2"});
+//        String[] palabra = v1.palabras;
+//        for (int i = 0; i < 16; i += 4) {
+//            System.out.println(v1.grafo.vertices[i].getLetras());
+//            v1.grafo.vertices[i].getListainterna().Imprimir();
+//            
+//        }
+        for (int i = 0; i < 16; i += 4) {
+            // Creamos una fila de 4 letras extraídas de los vértices
+            String letra1 = v1.grafo.vertices[i].getLetras();
+            String letra2 = v1.grafo.vertices[i + 1].getLetras();
+            String letra3 = v1.grafo.vertices[i + 2].getLetras();
+            String letra4 = v1.grafo.vertices[i + 3].getLetras();
+
+            model.addRow(new Object[]{letra1, letra2, letra3, letra4});
+        }
     }
 
     /**
@@ -142,6 +154,7 @@ public class Ventana1 extends javax.swing.JFrame {
                 "", "", "", ""
             }
         ));
+        jTable1.setRowHeight(35);
         jScrollPane3.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 220, 150));

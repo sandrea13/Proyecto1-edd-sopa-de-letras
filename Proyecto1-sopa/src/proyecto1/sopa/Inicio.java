@@ -148,7 +148,7 @@ public class Inicio extends javax.swing.JFrame {
                     }
                     //System.out.println(linea);
                     cadena.append(linea).append("\n");
-                    
+                    //System.out.println(cadena);
                     
                     
                 }
