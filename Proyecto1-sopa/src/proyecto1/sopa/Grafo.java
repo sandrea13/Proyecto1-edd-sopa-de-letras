@@ -119,6 +119,30 @@ public class Grafo {
         return false;
     }
     
+    public boolean recorrerProfundidad(int v, boolean[] visitados, String palabra, int contador) {
+        visitados[v] = true;
+        boolean b = false;
+
+        if (contador != palabra.length()) {
+            for (int i = 0; i < this.max; i++) {
+//                System.out.println(this.vertices[i].getLetras()+ "-" + palabra.charAt(contador) + "  " + this.vertices[i].getLetras().equals(String.valueOf(palabra.charAt(contador))) );
+                if ((v != i) && (!visitados[i]) && this.vertices[v].getListainterna().Buscar(this.vertices[i]) && (this.vertices[i].getLetras().equals(String.valueOf(palabra.charAt(contador))))) {
+//                    System.out.println(this.vertices[i].getLetras());
+                    int c = contador + 1;
+                    b = recorrerProfundidad(i, visitados, palabra, c);
+//                    System.out.println("----");
+                    if (b) {
+                        return b;
+                    }
+                }
+            }
+            return b;
+        } else {
+            return true;
+//            System.out.println("terminado");
+        }
+    }
+    
     public boolean profundidad(String palabra) {
         boolean visitados[] = new boolean[this.max];
         boolean b = false;
@@ -130,6 +154,10 @@ public class Grafo {
                 visitados[i] = true;
 
                 System.out.println("ENTRA");
+                b = recorrerProfundidad(i, visitados, palabra, 1);
+                if (b) {
+                    return b;
+                }
                 
             }
         }
