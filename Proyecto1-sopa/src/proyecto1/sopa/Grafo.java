@@ -5,7 +5,10 @@
 package proyecto1.sopa;
 
 /**
- *
+ * Clase que representa un grafo para una sopa de letras, implementado con una matriz fija de nodos.
+ * Permite crear conexiones entre nodos (aristas) y realizar búsquedas en anchura y profundidad
+ * para encontrar palabras dentro del grafo.
+ * 
  * @author Adolfo Castillo, Andrea Sanchez, Luciano Rojas 
  */
 public class Grafo {
@@ -18,6 +21,12 @@ public class Grafo {
     public Nodo[] vertices;
 
     
+    /**
+     * Crea un nuevo grafo con una cantidad fija de nodos y los inicializa con letras.
+     *
+     * @param max número máximo de nodos
+     * @param letras cadena de letras para asignar a cada nodo
+     */
     public Grafo(int max, String letras) {
         this.max = max;
         this.nodos_actuales = 0;
@@ -28,12 +37,22 @@ public class Grafo {
         this.crearGrafo();
     }
     
+    /**
+     * Crea una arista entre dos nodos del grafo.
+     *
+     * @param i índice del nodo de origen
+     * @param j índice del nodo de destino
+     */
     public void crearArista(int i, int j) {
         if (0 <= i && i < 16 && 0 <= j && j < 16) {
             this.vertices[i].getListainterna().Agg(this.vertices[j], this.vertices[i]);
         }
     }
     
+    /**
+     * Crea las conexiones entre los nodos para representar una matriz de 4x4,
+     * con enlaces a nodos vecinos adyacentes (arriba, abajo, izquierda, derecha, y diagonales).
+     */
     public void crearGrafo() {
         for (int x = 0; x < 16; x++) {
             if (x == 0 || x == 4 || x == 8 || x == 12) {
@@ -75,6 +94,9 @@ public class Grafo {
     }
     
     
+    /**
+     * Muestra en consola la lista de adyacencia de cada nodo del grafo.
+     */
     public void mostrar() {
         for (int i = 0; i < 16; i++) {
             this.vertices[i].getListainterna().Imprimir();
@@ -82,6 +104,12 @@ public class Grafo {
     }
     
     
+    /**
+     * Busca una palabra en el grafo usando recorrido en anchura (BFS).
+     *
+     * @param palabra la palabra a buscar
+     * @return {@code true} si la palabra fue encontrada, {@code false} en caso contrario
+     */
     public boolean amplitud(String palabra) {
         Cola cola = new Cola();
         boolean visitados[] = new boolean[this.max];
@@ -119,6 +147,16 @@ public class Grafo {
         return false;
     }
     
+    
+    /**
+     * Función recursiva auxiliar para el recorrido en profundidad (DFS).
+     *
+     * @param v índice del nodo actual
+     * @param visitados arreglo de nodos visitados
+     * @param palabra palabra objetivo
+     * @param contador posición actual en la palabra
+     * @return {@code true} si se encontró la palabra, {@code false} en caso contrario
+     */
     public boolean recorrerProfundidad(int v, boolean[] visitados, String palabra, int contador) {
         visitados[v] = true;
         boolean b = false;
@@ -143,6 +181,12 @@ public class Grafo {
         }
     }
     
+    /**
+     * Busca una palabra en el grafo usando recorrido en profundidad (DFS).
+     *
+     * @param palabra la palabra a buscar
+     * @return {@code true} si la palabra fue encontrada, {@code false} en caso contrario
+     */
     public boolean profundidad(String palabra) {
         boolean visitados[] = new boolean[this.max];
         boolean b = false;
