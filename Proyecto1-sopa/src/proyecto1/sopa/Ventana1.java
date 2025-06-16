@@ -98,6 +98,11 @@ public class Ventana1 extends javax.swing.JFrame {
         jPanel1.add(buscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 170, -1));
 
         jButton3.setText("Cargar Informacion");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, -1, -1));
 
         palabras.setColumns(20);
@@ -185,6 +190,12 @@ public class Ventana1 extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Inicio nuevoInicio = new Inicio();
+        nuevoInicio.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
