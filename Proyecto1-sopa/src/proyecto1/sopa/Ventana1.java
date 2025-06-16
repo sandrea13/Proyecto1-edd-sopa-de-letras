@@ -36,7 +36,7 @@ public class Ventana1 extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        resultadoBusqueda = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -75,9 +75,9 @@ public class Ventana1 extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        resultadoBusqueda.setColumns(20);
+        resultadoBusqueda.setRows(5);
+        jScrollPane1.setViewportView(resultadoBusqueda);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 290, 90));
 
@@ -155,14 +155,18 @@ public class Ventana1 extends javax.swing.JFrame {
         String palabra = this.buscador.getText().toUpperCase();
         if (palabra.length() > 2) {
             boolean encontro = v1.grafo.amplitud(palabra);
+            
+            resultadoBusqueda.setText("");
+            
             if (encontro) {
-                JOptionPane.showMessageDialog(rootPane, "La palabra ha sido encontrada");
+                String frase = "La palabra "+ palabra +" ha sido encontrada";
+                resultadoBusqueda.setText(frase);
             } else {
-                JOptionPane.showMessageDialog(rootPane, "La palabra no ha sido encontrada");
-
+                String frase = "La palabra "+ palabra +" no ha sido encontrada";
+                resultadoBusqueda.setText(frase);
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "La palabra debe tener al menos tres letras");
+            resultadoBusqueda.setText("La palabra debe tener al menos tres letras");
 
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -216,7 +220,7 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea resultadoBusqueda;
     // End of variables declaration//GEN-END:variables
 }
