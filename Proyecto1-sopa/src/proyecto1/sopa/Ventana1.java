@@ -5,6 +5,7 @@
 package proyecto1.sopa;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +21,13 @@ public class Ventana1 extends javax.swing.JFrame {
     public Ventana1(Inicio v1) {
         initComponents();
         this.v1 = v1;
+        
+        // Obtener el modelo actual de la tabla
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        // Agregar filas (cada fila es un array de objetos)
+        model.addRow(new Object[]{"Dato 1", "Dato 2", "Dato 3", "Dato 4"});
+        model.addRow(new Object[]{"Otro dato", "Más datos", "Último dato", "Último dato2"});
     }
 
     /**
@@ -46,6 +54,8 @@ public class Ventana1 extends javax.swing.JFrame {
         palabras = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 204, 204));
@@ -94,7 +104,7 @@ public class Ventana1 extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Volver a cargar informacion: ");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 440, -1, -1));
         jPanel1.add(buscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 170, -1));
 
         jButton3.setText("Cargar Informacion");
@@ -103,13 +113,13 @@ public class Ventana1 extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 470, -1, -1));
 
         palabras.setColumns(20);
         palabras.setRows(5);
         jScrollPane2.setViewportView(palabras);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 270, 200));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 270, 150));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -123,6 +133,18 @@ public class Ventana1 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, -1, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "", "", "", ""
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 220, 150));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 520));
 
@@ -246,6 +268,8 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea palabras;
     private javax.swing.JTextArea resultadoBusqueda;
     // End of variables declaration//GEN-END:variables
