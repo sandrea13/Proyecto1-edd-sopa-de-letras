@@ -209,7 +209,7 @@ public class Ventana1 extends javax.swing.JFrame {
         
         String palabra = this.buscador.getText().toUpperCase();
         if (palabra.length() > 2) {
-            boolean encontro = v1.grafo.amplitud(palabra);
+            boolean encontro = v1.grafo.profundidad(palabra);
             
             resultadoBusqueda.setText("");
             
