@@ -127,15 +127,27 @@ public class Grafo {
                 while (!cola.isEmpty()) {
                     String p = palabra.substring(pos);
                     verticeActual = cola.desencolar();
+                    
+                    // Buscar el índice del nodo actual
+                    int indiceActual = -1;
+                    for (int k = 0; k < this.max; k++) {
+                        if (this.vertices[k] == verticeActual) {
+                            indiceActual = k;
+                            break;
+                        }
+                    }
+
+                    // Mostrar por consola dónde estamos
+                    System.out.println("🔵 BFS en nodo: '" + verticeActual.getLetras() + "' en posición: " + indiceActual);
+
                     if (p.length() == 0) {
                         return true;
                     }
-                    System.out.println(verticeActual.getLetras());
 
                     for (int j = 0; j < this.max; j++) {
                         if (verticeActual.getListainterna().Buscar(this.vertices[j]) && (!visitados[j]) && this.vertices[j].getLetras().equals(String.valueOf(palabra.charAt(pos)))) {
                             cola.encolar(this.vertices[j]);
-                            System.out.println(this.vertices[j].getLetras());
+                            System.out.println("➡️   Encolando: " + this.vertices[j].getLetras());
                             visitados[j] = true;
                         }
                     }
@@ -207,5 +219,83 @@ public class Grafo {
         }
         return b;
     }
+    
+    
+    public int[] recorridoBFSIndices(String palabra) {
+       Cola cola = new Cola(); // tu estructura propia
+       Nodo verticeActual;
+
+       Nodo[] nodosCola = new Nodo[100]; // máximo 100 pasos de búsqueda
+       int[][] rutas = new int[100][palabra.length()]; // rutas[i] = ruta del nodo en nodosCola[i]
+       int[] profundidades = new int[100]; // cuántas letras se han recorrido en rutas[i]
+       int inicio = 0;
+       int fin = 0;
+
+       // Buscar todos los nodos que tengan la primera letra de la palabra
+       for (int i = 0; i < this.max; i++) {
+           if (this.vertices[i].getLetras().equals(String.valueOf(palabra.charAt(0)))) {
+               nodosCola[fin] = this.vertices[i];
+               rutas[fin][0] = i;
+               profundidades[fin] = 1;
+               fin++;
+           }
+       }
+
+       while (inicio < fin) {
+           verticeActual = nodosCola[inicio];
+           int[] rutaActual = rutas[inicio];
+           int profundidad = profundidades[inicio];
+           inicio++;
+
+           if (profundidad == palabra.length()) {
+               int[] resultado = new int[palabra.length()];
+               for (int j = 0; j < palabra.length(); j++) {
+                   resultado[j] = rutaActual[j];
+               }
+               return resultado;
+           }
+
+           // Encontrar índice del nodo actual
+           int indiceActual = -1;
+           for (int k = 0; k < this.max; k++) {
+               if (this.vertices[k] == verticeActual) {
+                   indiceActual = k;
+                   break;
+               }
+           }
+
+           for (int j = 0; j < this.max; j++) {
+               boolean yaVisitado = false;
+
+               // Revisar si j ya está en la ruta actual (evita ciclos)
+               for (int p = 0; p < profundidad; p++) {
+                   if (rutaActual[p] == j) {
+                       yaVisitado = true;
+                       break;
+                   }
+               }
+
+               if (!yaVisitado &&
+                   this.vertices[indiceActual].getListainterna().Buscar(this.vertices[j]) &&
+                   this.vertices[j].getLetras().equals(String.valueOf(palabra.charAt(profundidad)))) {
+
+                   // Copiar ruta actual y agregar el nuevo nodo
+                   for (int x = 0; x < palabra.length(); x++) {
+                       rutas[fin][x] = rutaActual[x];
+                   }
+                   rutas[fin][profundidad] = j;
+                   nodosCola[fin] = this.vertices[j];
+                   profundidades[fin] = profundidad + 1;
+                   fin++;
+               }
+           }
+       }
+
+       return new int[0]; // palabra no encontrada
+   }
+
+
+
+    
     
 }

@@ -4,7 +4,6 @@
  */
 package proyecto1.sopa;
 
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -116,7 +115,7 @@ public class Ventana1 extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Volver a cargar informacion: ");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 440, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, -1, -1));
         jPanel1.add(buscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 170, -1));
 
         jButton3.setText("Cargar Informacion");
@@ -125,7 +124,7 @@ public class Ventana1 extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 470, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, -1, -1));
 
         palabras.setColumns(20);
         palabras.setRows(5);
@@ -144,7 +143,7 @@ public class Ventana1 extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, -1, -1));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 130, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -157,7 +156,7 @@ public class Ventana1 extends javax.swing.JFrame {
         jTable1.setRowHeight(35);
         jScrollPane3.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 220, 150));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, 220, 150));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 520));
 
@@ -208,22 +207,47 @@ public class Ventana1 extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
         String palabra = this.buscador.getText().toUpperCase();
-        if (palabra.length() > 2) {
-            boolean encontro = v1.grafo.profundidad(palabra);
-            
-            resultadoBusqueda.setText("");
-            
-            if (encontro) {
-                String frase = "La palabra "+ palabra +" ha sido encontrada";
-                resultadoBusqueda.setText(frase);
-            } else {
-                String frase = "La palabra "+ palabra +" no ha sido encontrada";
-                resultadoBusqueda.setText(frase);
-            }
-        } else {
-            resultadoBusqueda.setText("La palabra debe tener al menos tres letras");
+        resultadoBusqueda.setText("");
 
+        if (palabra.length() < 3) {
+            resultadoBusqueda.setText("La palabra debe tener al menos tres letras");
+            return;
         }
+
+        int[] recorrido = v1.grafo.recorridoBFSIndices(palabra);
+
+        if (recorrido.length == 0) {
+            resultadoBusqueda.setText("La palabra " + palabra + " no ha sido encontrada");
+            return;
+        }
+
+        resultadoBusqueda.setText("La palabra " + palabra + " ha sido encontrada");
+
+        Thread animacion = new Thread(() -> {
+            for (int i = 0; i < recorrido.length; i++) {
+                int idx = recorrido[i];
+                int fila = idx / 4;
+                int col = idx % 4;
+
+                jTable1.changeSelection(fila, col, false, false);
+                jTable1.editCellAt(fila, col);
+
+                // Mostrar letra en rojo y negrita temporalmente
+                jTable1.setValueAt("<html><b><font color='red'>" +
+                    v1.grafo.vertices[idx].getLetras() + "</font></b></html>", fila, col);
+
+                try {
+                    Thread.sleep(600);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+
+                // Restaurar la letra original
+                jTable1.setValueAt(v1.grafo.vertices[idx].getLetras(), fila, col);
+            }
+        });
+
+        animacion.start();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -231,7 +255,7 @@ public class Ventana1 extends javax.swing.JFrame {
         nuevoInicio.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
