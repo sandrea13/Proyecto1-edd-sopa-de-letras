@@ -220,7 +220,14 @@ public class Grafo {
         return b;
     }
     
-    
+    /**
+    * Realiza una búsqueda en amplitud (BFS) para encontrar una palabra dentro del grafo,
+    * devolviendo la ruta de índices de los nodos que la componen si la palabra es encontrada.
+    *
+    * @param palabra la palabra a buscar)
+    * @return un arreglo de enteros con los índices de los nodos que forman la palabra;
+    *         si no se encuentra, retorna un arreglo vacío
+    */
     public int[] recorridoBFSIndices(String palabra) {
        Cola cola = new Cola(); // tu estructura propia
        Nodo verticeActual;

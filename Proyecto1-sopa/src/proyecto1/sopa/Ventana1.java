@@ -15,8 +15,15 @@ public class Ventana1 extends javax.swing.JFrame {
     public static Inicio v1;
     
     /**
-     * Creates new form Ventana1
-     */
+    * Constructor de la clase Ventana1.
+    * Inicializa los componentes gráficos de la ventana y carga la sopa de letras
+    * desde el grafo del objeto Inicio pasado como parámetro.
+    *
+    * Agrega al modelo de la tabla "jTable1" las letras del grafo, organizadas en
+    * filas de 4 caracteres, de acuerdo a los vértices del grafo.
+    *
+    * @param v1 instancia de la clase Inicio que contiene el grafo y las palabras a buscar
+    */
     public Ventana1(Inicio v1) {
         initComponents();
         this.v1 = v1;
@@ -162,7 +169,18 @@ public class Ventana1 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
+    /**
+    * Acción ejecutada al presionar el botón "Busqueda por DFS".
+    * Recorre todas las palabras almacenadas en el objeto "Inicio" y verifica
+    * si están presentes en el grafo usando búsqueda en profundidad (DFS).
+    * 
+    * Muestra en el área de texto `palabras` todas las palabras encontradas
+    * y el tiempo total de ejecución.
+    *
+    * @param evt el evento de acción generado por el botón
+    */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Profundidad
         
@@ -183,7 +201,18 @@ public class Ventana1 extends javax.swing.JFrame {
         this.palabras.setText(palabras.getText() + "\n \n" + "Tiempo de ejecución: " + tiempoDeEjecucion + " milisegundos");
         //JOptionPane.showMessageDialog(null, "Tiempo de ejecución: " + tiempoDeEjecucion + " milisegundos");
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    
+    /**
+    * Acción ejecutada al presionar el botón "Busqueda por BFS".
+    * Recorre todas las palabras almacenadas en el objeto "Inicio" y verifica
+    * si están presentes en el grafo usando búsqueda en amplitud (BFS).
+    * 
+    * Muestra en el área de texto "palabras" todas las palabras encontradas
+    * y el tiempo total de ejecución.
+    *
+    * @param evt el evento de acción generado por el botón
+    */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //Amplitud
         this.palabras.setText("");
@@ -203,7 +232,18 @@ public class Ventana1 extends javax.swing.JFrame {
         this.palabras.setText(palabras.getText() + "\n \n" + "Tiempo de ejecución: " + tiempoDeEjecucion + " milisegundos");
         //JOptionPane.showMessageDialog(null, "Tiempo de ejecución: " + tiempoDeEjecucion + " milisegundos");
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
+    /**
+     * Acción ejecutada al presionar el botón "Buscar palabra".
+     * Realiza la búsqueda de una palabra específica (escrita por el usuario)
+     * usando el método "recorridoBFSIndices" del grafo.
+     * 
+     * Si la palabra es encontrada, resalta letra por letra en la tabla "jTable1"
+     * con una animación temporal. Si no es encontrada, muestra un mensaje indicando
+     * que no se halló la palabra.
+     *
+     * @param evt el evento de acción generado por el botón
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
         String palabra = this.buscador.getText().toUpperCase();
@@ -249,7 +289,14 @@ public class Ventana1 extends javax.swing.JFrame {
 
         animacion.start();
     }//GEN-LAST:event_jButton4ActionPerformed
-
+    
+    /**
+    * Acción ejecutada al presionar el botón "Cargar Información".
+    * Crea una nueva instancia de la clase "Inicio", mostrando su ventana
+    * y ocultando la actual.
+    *
+    * @param evt el evento de acción generado por el botón
+    */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Inicio nuevoInicio = new Inicio();
         nuevoInicio.setVisible(true);
